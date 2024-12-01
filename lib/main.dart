@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 
 void main() {
@@ -18,6 +16,8 @@ class Login extends StatefulWidget {
 
 class _LoginState extends State<Login> {
   bool entrar = true;
+
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -39,6 +39,7 @@ class _LoginState extends State<Login> {
         child: SingleChildScrollView(
           padding: const EdgeInsets.fromLTRB(15, 0, 15, 0),
           child: Form(
+            key: _formKey,
             child: Column(
               children: [
                 Icon(
@@ -50,6 +51,21 @@ class _LoginState extends State<Login> {
                 ),
                 const SizedBox(height: 20),
                 TextFormField(
+                  validator: (String? value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Insira um email válido';
+                    }
+                    if (value.length < 5) {
+                      return 'O campo deve conter no mínimo 5 caracteres';
+                    }
+                    if (!value.contains('@')) {
+                      return 'Insira um email válido';
+                    }
+                    if (!value.contains('.')) {
+                      return 'Insira um email válido';
+                    }
+                    return null;
+                  },
                   decoration: InputDecoration(
                     hintText: "Email",
                     fillColor: Colors.white,
@@ -74,6 +90,15 @@ class _LoginState extends State<Login> {
                   visible: !entrar,
                   child: Column(children: [
                     TextFormField(
+                      validator: (String? value) {
+                        if (value == null || value.isEmpty) {
+                          return 'O campo nome não pode ser vazio';
+                        }
+                        if (value.length < 3) {
+                          return 'O campo deve conter no mínimo 3 caracteres';
+                        }
+                        return null;
+                      },
                       decoration: InputDecoration(
                         hintText: "Nome",
                         fillColor: Colors.white,
@@ -97,6 +122,15 @@ class _LoginState extends State<Login> {
                 ),
                 const SizedBox(height: 5),
                 TextFormField(
+                  validator: (String? value) {
+                    if (value == null || value.isEmpty) {
+                      return 'O campo senha não pode ser vazio';
+                    }
+                    if (value.length < 8) {
+                      return 'O campo deve conter no mínimo 8 caracteres';
+                    }
+                    return null;
+                  },
                   decoration: InputDecoration(
                     hintText: "Senha",
                     fillColor: Colors.white,
@@ -123,6 +157,15 @@ class _LoginState extends State<Login> {
                   child: Column(
                     children: [
                       TextFormField(
+                        validator: (String? value) {
+                          if (value == null || value.isEmpty) {
+                            return 'O campo Confirmar senha não pode ser vazio';
+                          }
+                          if (value.length < 8) {
+                            return 'O campo deve conter no mínimo 8 caracteres';
+                          }
+                          return null;
+                        },
                         decoration: InputDecoration(
                           hintText: "Confirmar Senha",
                           fillColor: Colors.white,
@@ -151,7 +194,9 @@ class _LoginState extends State<Login> {
                   child: SizedBox(
                     height: 40,
                     child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        botaoEntrar();
+                      },
                       style: ElevatedButton.styleFrom(
                         backgroundColor:
                             (entrar) ? Colors.red : Colors.deepOrangeAccent,
@@ -189,5 +234,13 @@ class _LoginState extends State<Login> {
         ),
       ),
     );
+  }
+
+  botaoEntrar() {
+    if (_formKey.currentState!.validate()) {
+      print("form valido");
+    } else {
+      print("form invalido");
+    }
   }
 }

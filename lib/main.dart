@@ -41,6 +41,7 @@ class _LoginState extends State<Login> {
                   color: Colors.white,
                   size: 110,
                 ),
+                const SizedBox(height: 20),
                 TextFormField(
                   decoration: InputDecoration(
                     hintText: "Email",
@@ -61,6 +62,60 @@ class _LoginState extends State<Login> {
                     fontSize: 16,
                   ),
                 ),
+                const SizedBox(height: 5),
+                TextFormField(
+                  decoration: InputDecoration(
+                    hintText: "Senha",
+                    fillColor: Colors.white,
+                    filled: true,
+                    hintStyle: const TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.w200,
+                      fontSize: 16,
+                    ),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  ),
+                  style: const TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.w200,
+                    fontSize: 16,
+                  ),
+                  obscureText: true,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 15, bottom: 15),
+                  child: SizedBox(
+                    height: 40,
+                    child: ElevatedButton(
+                      onPressed: () {},
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.red,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(6),
+                        ),
+                      ),
+                      child: const Text(
+                        "Entrar",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 18,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                TextButton(
+                  onPressed: () {},
+                  child: const Text(
+                    "Cadastre-se",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 18,
+                    ),
+                  ),
+                )
               ],
             ),
           ),
